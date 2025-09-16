@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="hongy.dropdownlistwithattribute.DropdownListWithAttribute" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Dropdown List With Attribute</name>
+    <description>the dropdownlist for  bind value to attribute </description>
+    <icon>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAQAAAD9CzEMAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfpAQkKJwBqpbFjAAADEklEQVRYw+3XT2hcVRQG8N+beeM0SYNNpHTUlgRaWiOIFl1oCxa7URSRIkIp1IXoQkGIIKhVFy6EiCAuFLf+gS7cCUEExVIsEoW2GoUUaQVRjGJsTBqTOpnMdTHp5E1nXmaSmaz0uzBc7rn3O2e+e+6597HBiJC3zwH9og7yBhed9KV/6DViVtiANmtEb+wpw/KCxXVFmhOlrM3pNWw6ct5OC950ch0y9Hvddhc871Kd9YBhXS5QEpzWv674C84JzuhrYOt3WlDKyGJBsY0NXUmOWL/ccr9oAdlMG8RXY5NnnfCSnuRgnOh3e8SQkLL8K6NKq9I/5wV5Q7q84u8VQxCcshn3m18l6SbdkrIHZ/XJOOby8syiV+X0OCUISYlmTCtbatiCKfOp0QdbHZU371OX5Bxx/RUlkhKNechAKsU5P6Y6iEwblfWutzzmSZ+ZWtn6FYnWjhWJ2KQgh9g2XdhckSheF3EjXPYbKPk9OZxRRJ9r26BunHdb9KEY+87t9njHWGqCphP3ug4Fz5i/qhZH7rQH4xw2tSG1NAimHCZ21ITFjpMvmnBUHCGyw222dPjC+cs3fl6z7P9FVHTPuMvemtFZn9QemPaw2/m6LHitM9SVarpVoc6yS0fKSJwQ6msfoGzA07qqM7rlm7IEc2mXUTLKCW8L2OuJqoObjdjRJJsjZR96o/HDJ66ZWN876MGWlOj23nI1XcVBaND7wue2t/QPLjaXaJdHUTaYUH3cId1N4y+bTnsZJh3st7/OHsyabUmkFFTSdMqfdZafVn2ktIzKdmbd446aTZ7xkV864eB/NEW0/HuToZobbc6Ymc65GfStslK1LSl6uTPUlXNwo50i2cR4xq3iTiRqspp+bxRBwRH5qmDZhmU7WGztQk8uPuPYcjU9VC0Wg1400ICq5Ljjrbhodqk84PEUyzYfm27fwVnjCg0iDU6YW6tEN7hXULY7MTrmvoYP45JfW/uyTjo46G4QVb8UKZs02QrR6g5mzOmRcU3C8oeldoivoJKMOQ/bV3OSZ7zvh0442HD8C2fTckA7xNJvAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDI1LTAxLTA5VDEwOjM3OjE2KzAwOjAwBMe2HgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyNS0wMS0wOVQxMDozNzoxNiswMDowMHWaDqIAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC
+    </icon>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Basic">
+                <property key="BindAttr" type="attribute" required="true" onChange="InputChange">
+                    <caption>Bind Attribute</caption>
+                    <description>Select the value to be bound to the property</description>
+                    <attributeTypes>
+                            <attributeType name="String"/>
+                            <attributeType name="Integer"/>
+                    </attributeTypes>
+                </property>
+                <systemProperty key="Label" />
+                <systemProperty key="Visibility"/>             
+            </propertyGroup>
+            <propertyGroup caption="Options">
+                <property key="Options" type="datasource" required="true" isList="true">
+                    <caption>Select Options</caption>
+                    <description>The data source bound to the dropdown options</description>
+                </property>
+                <property key="Op_Key" type="attribute" required="true" dataSource="Options">
+                    <caption>Key</caption>
+                    <description>The value set after selection and bound to "Bind Attribute"</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                        <attributeType name="Integer"/>
+                    </attributeTypes>
+                </property>
+                <property key="Op_Label" type="expression" required="true" dataSource="Options">
+                    <caption>Option Label</caption>
+                    <description>The content displayed in the options</description>
+                    <returnType type="String" />
+                </property>
+                <property key="Can_Search" type="boolean" defaultValue="true">
+                    <caption>Search</caption>
+                    <description>Can we search from the candidate list?</description>
+                </property>
+            </propertyGroup>            
+        </propertyGroup> 
+
+        <propertyGroup caption="Event">
+            <property key="InputChange" type="action">
+                <caption>OnInputChange</caption>
+                <description>Triggered when the input changes</description>                 
+            </property>
+        </propertyGroup>
+    </properties>
+</widget>
