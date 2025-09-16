@@ -17,4 +17,5 @@ mendixProject
 **/screenshot
 **/screenshot-results
 **/tests/testProject
-**/artifacts
+**/artifacts 
+widgets/*
