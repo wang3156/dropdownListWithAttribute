@@ -11,6 +11,15 @@
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="Basic">
+                
+                <property key="BindType" type="enumeration" defaultValue="BindAttribute">
+                    <caption>Type</caption>
+                    <description />
+                    <enumerationValues>                        
+                        <enumerationValue key="BindAttribute">Attribute</enumerationValue>     
+                        <enumerationValue key="BindAssociation">Association</enumerationValue>                   
+                    </enumerationValues>
+                </property>
                 <property key="BindAttr" type="attribute" required="true" onChange="InputChange">
                     <caption>Bind Attribute</caption>
                     <description>Select the value to be bound to the property</description>
@@ -19,8 +28,17 @@
                             <attributeType name="Integer"/>
                     </attributeTypes>
                 </property>
+                 <property key="BindAsso" type="association" required="true" onChange="InputChange" selectableObjects="Options">
+                    <caption>Association Attribute</caption>
+                    <description>Select the value to be bound to the property</description>
+                    <associationTypes>
+                        <associationType name="Reference" />
+                        <associationType name="ReferenceSet" />
+                    </associationTypes>
+                </property>
                 <systemProperty key="Label" />
-                <systemProperty key="Visibility"/>             
+                <systemProperty key="Visibility"/>   
+                <systemProperty key="Editability"/>   
             </propertyGroup>
             <propertyGroup caption="Options">
                 <property key="Options" type="datasource" required="true" isList="true">

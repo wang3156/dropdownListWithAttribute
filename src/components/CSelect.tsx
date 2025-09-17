@@ -60,6 +60,7 @@ export function CSelect(props: DropdownListWithAttributeContainerProps): ReactEl
         showList = !showList;
     }
     const onInput_Change = () => {
+
         let val_input = inputRef.current?.value.trim();
         if (val_input == pre_val_input) {
             return;
@@ -78,14 +79,19 @@ export function CSelect(props: DropdownListWithAttributeContainerProps): ReactEl
         if (!inputRef.current) {
             return;
         }
-        options.BindAttr.setTextValue(options.Op_Key.get(el).value?.toString() ?? "")
+        if (options.BindType == "BindAttribute") {
+            options.BindAttr.setTextValue(options.Op_Key.get(el).value?.toString() ?? "")
+        }
+        else {
+            options.BindAsso.setValue(el);
+        }
         inputRef.current.value = options.Op_Label.get(el).value?.toString() ?? "";
         onInput_SelectList();
     }
 
     var el = <div className="css_DropdownListWithAttribute_container">
         <div className="css_DropdownListWithAttribute">
-            <input tabIndex={props.tabIndex} id={props.id} className="css_input_select" onChange={onInput_Change} onFocus={onInput_SelectList} readOnly={!props.Can_Search} ref={inputRef} />
+            <input tabIndex={props.tabIndex} id={props.id} className="css_input_select" onChange={(options.Can_Search ? onInput_Change : undefined)} onFocus={onInput_SelectList} readOnly={!props.Can_Search} ref={inputRef} />
         </div>
         <ul className="css_DropdownListWithAttribute_list">
             {renderList()}

@@ -91,15 +91,79 @@ type DatasourceProps = BaseProps & {
   child?: PreviewProps; // any type of preview property component (optional)
 }
 
+// 属性操作工具类
+class PropertyEditor {
+  /** 递归修改属性 */
+  private modifyProperty(
+    modify: (prop: Property, index: number, array: Property[]) => void,
+    groups: PropertyGroup[], // 符合官方定义：PropertyGroup[]
+    key: string,
+    nestedPropIndex?: number,
+    nestedPropKey?: string
+  ): void {
+    groups.forEach(group => {
+      // 处理嵌套分组（仍是PropertyGroup[]类型）
+      if (group.propertyGroups) {
+        this.modifyProperty(modify, group.propertyGroups, key, nestedPropIndex, nestedPropKey);
+      }
+
+      // 处理当前分组的属性（Property[]类型）
+      group.properties?.forEach((prop, index, array) => {
+        if (prop.key === key) {
+          if (nestedPropIndex === undefined || nestedPropKey === undefined) {
+            // 直接修改当前属性
+            modify(prop, index, array);
+          }
+          // 处理objects嵌套属性（根据官方类型，objects是ObjectProperties[]）
+          else if (prop.objects?.[nestedPropIndex]) {
+            // ObjectProperties的properties是PropertyGroup[]，符合modifyProperty的参数要求
+            this.modifyProperty(
+              modify,
+              prop.objects[nestedPropIndex].properties,
+              nestedPropKey
+            );
+          }
+          // 处理properties嵌套属性（根据官方类型，properties是Properties[]即PropertyGroup[][]）
+          else if (prop.properties?.[nestedPropIndex]) {
+            // prop.properties[nestedPropIndex]是PropertyGroup[]，符合参数要求
+            this.modifyProperty(
+              modify,
+              prop.properties[nestedPropIndex],
+              nestedPropKey
+            );
+          }
+        }
+      });
+    });
+  }
+
+  /** 隐藏多个属性 */
+  hidePropertiesIn(propertyGroups: PropertyGroup[], keys: string[]): void {
+    keys.forEach(key => {
+      this.modifyProperty((_, index, container) => {
+        container.splice(index, 1); // 从属性数组中移除目标属性
+      }, propertyGroups, key);
+    });
+  }
+}
+
+// 工具实例
+const propertyEditor = new PropertyEditor();
+
+
 export type PreviewProps = ImageProps | ContainerProps | RowLayoutProps | TextProps | DropZoneProps | SelectableProps | DatasourceProps;
 
 export function getProperties(_values: DropdownListWithAttributePreviewProps, defaultProperties: Properties/*, target: Platform*/): Properties {
-  // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
-  /* Example
-  if (values.myProperty === "custom") {
-      delete defaultProperties.properties.myOtherProperty;
+
+  // 根据数据类型隐藏属性
+  switch (_values.BindType.toString()) {
+    case "BindAssociation":
+      propertyEditor.hidePropertiesIn(defaultProperties, ["BindAttr"]);
+      break;
+    case "BindAttribute":
+      propertyEditor.hidePropertiesIn(defaultProperties, ["BindAsso"]);
+      break;
   }
-  */
   return defaultProperties;
 }
 
