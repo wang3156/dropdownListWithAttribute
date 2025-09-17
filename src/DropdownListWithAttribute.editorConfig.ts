@@ -158,7 +158,7 @@ export function getProperties(_values: DropdownListWithAttributePreviewProps, de
   // 根据数据类型隐藏属性
   switch (_values.BindType.toString()) {
     case "BindAssociation":
-      propertyEditor.hidePropertiesIn(defaultProperties, ["BindAttr"]);
+      propertyEditor.hidePropertiesIn(defaultProperties, ["BindAttr", "Op_Key"]);
       break;
     case "BindAttribute":
       propertyEditor.hidePropertiesIn(defaultProperties, ["BindAsso"]);
