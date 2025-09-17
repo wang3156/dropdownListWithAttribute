@@ -36,17 +36,21 @@ export function CSelect(props: DropdownListWithAttributeContainerProps): ReactEl
 
     const stop_prop = (e: any) => {
         e.stopPropagation();
-        e.preventDefault()
+        e.stopImmediatePropagation();
     }
+
+    var other_close = () => {
+        stop_prop(event);
+        if (event?.target == inputRef.current || !showList) return;
+        onInput_SelectList();
+    }
+
     const onInput_SelectList = () => {
         stop_prop(event);
         if (!inputRef.current) {
             return;
         }
-        var other_close = () => {
-            if (event?.target == inputRef.current || !showList) return;
-            onInput_SelectList();
-        }
+
         let parnt_ipt = inputRef.current.parentElement;
         let c_cssName = 'r-180';
 
@@ -55,7 +59,9 @@ export function CSelect(props: DropdownListWithAttributeContainerProps): ReactEl
             document.removeEventListener('click', other_close);
         } else {
             parnt_ipt?.classList.add(c_cssName);
-            document.addEventListener('click', other_close, { capture: false })
+            setTimeout(() => {
+                document.addEventListener('click', other_close)
+            }, 300)
         }
         showList = !showList;
     }

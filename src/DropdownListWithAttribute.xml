@@ -64,8 +64,8 @@
 
         <propertyGroup caption="Event">
             <property key="InputChange" type="action">
-                <caption>OnInputChange</caption>
-                <description>Triggered when the input changes</description>                 
+                <caption>OnChange</caption>
+                <description>Triggered when the Select changes</description>                 
             </property>
         </propertyGroup>
     </properties>
