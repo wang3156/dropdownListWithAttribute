@@ -57,7 +57,7 @@
                 </property>
                 <property key="Can_Search" type="boolean" defaultValue="true">
                     <caption>Search</caption>
-                    <description>Can we search from the candidate list?</description>
+                    <description>Can we search from the candidate list By Option Label?</description>
                 </property>
             </propertyGroup>            
         </propertyGroup> 
