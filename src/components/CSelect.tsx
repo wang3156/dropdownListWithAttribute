@@ -76,20 +76,42 @@ export function CSelect(props: DropdownListWithAttributeContainerProps): ReactEl
         }
         var tid = setTimeout(() => {
             pre_val_input = val_input;
-            setSearchText(val_input ?? "");
+            if (!val_input) {
+                onSelectLi(null);
+            }
+            if (!options.InputAttr) {
+                setSearchText(val_input ?? "");
+            } else {
+                options.InputAttr.setTextValue(val_input ?? "");
+                options.Options.reload();
+            }
         }, 300);
         setTimeoutId(tid);
     };
     const onSelectLi = (el: any) => {
-        stop_prop(event);
+        if (event)
+            stop_prop(event);
         if (!inputRef.current) {
             return;
         }
+
         if (options.BindType == "BindAttribute") {
-            options.BindAttr.setTextValue(options.Op_Key.get(el).value?.toString() ?? "")
+            if (el) {
+                options.BindAttr.setTextValue(options.Op_Key.get(el).value?.toString() ?? "")
+            } else {
+                options.BindAttr.setTextValue('');
+                return;
+            }
+
         }
         else {
-            options.BindAsso.setValue(el);
+            if (el) {
+                options.BindAsso.setValue(el);
+            }
+            else {
+                options.BindAsso.setValue(undefined);
+                return;
+            }
         }
         inputRef.current.value = options.Op_Label.get(el).value?.toString() ?? "";
         onInput_SelectList();

@@ -17,7 +17,7 @@
                         <enumerationValue key="BindAssociation">Association</enumerationValue>                   
                     </enumerationValues>
                 </property>
-                <property key="BindAttr" type="attribute" required="true" onChange="InputChange">
+                <property key="BindAttr" type="attribute" required="true" onChange="OnSelectChange">
                     <caption>Bind Attribute</caption>
                     <description>Select the value to be bound to the property</description>
                     <attributeTypes>
@@ -25,7 +25,7 @@
                             <attributeType name="Integer"/>
                     </attributeTypes>
                 </property>
-                 <property key="BindAsso" type="association" required="true" onChange="InputChange" selectableObjects="Options">
+                 <property key="BindAsso" type="association" required="true" onChange="OnSelectChange" selectableObjects="Options">
                     <caption>Association Attribute</caption>
                     <description>Select the value to be bound to the property</description>
                     <associationTypes>
@@ -59,14 +59,23 @@
                     <caption>Search</caption>
                     <description>Can we search from the candidate list By Option Label?</description>
                 </property>
+                <property key="InputAttr" type="attribute" required="false" >
+                    <caption>Input Attribute</caption>
+                    <description>When the input of the search mode changes, the attribute bound to the change value (it should be an attribute that calls the nanoflow or microflow parameters)</description>       
+                    <attributeTypes>
+                            <attributeType name="String"/>                            
+                    </attributeTypes>
+                </property>
             </propertyGroup>            
         </propertyGroup> 
 
         <propertyGroup caption="Event">
-            <property key="InputChange" type="action">
-                <caption>OnChange</caption>
-                <description>Triggered when the Select changes</description>                 
-            </property>
+            <propertyGroup caption="General">
+                <property key="OnSelectChange" type="action">
+                    <caption>OnSelectChange</caption>
+                    <description>Triggered when the Select changes</description>                 
+                </property>
+            </propertyGroup>             
         </propertyGroup>
     </properties>
 </widget>

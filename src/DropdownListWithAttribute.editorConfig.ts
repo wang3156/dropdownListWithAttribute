@@ -156,7 +156,7 @@ export type PreviewProps = ImageProps | ContainerProps | RowLayoutProps | TextPr
 export function getProperties(_values: DropdownListWithAttributePreviewProps, defaultProperties: Properties/*, target: Platform*/): Properties {
 
   // 根据数据类型隐藏属性
-  switch (_values.BindType.toString()) {
+  switch (_values.BindType) {
     case "BindAssociation":
       propertyEditor.hidePropertiesIn(defaultProperties, ["BindAttr", "Op_Key"]);
       break;
@@ -164,6 +164,7 @@ export function getProperties(_values: DropdownListWithAttributePreviewProps, de
       propertyEditor.hidePropertiesIn(defaultProperties, ["BindAsso"]);
       break;
   }
+
   return defaultProperties;
 }
 

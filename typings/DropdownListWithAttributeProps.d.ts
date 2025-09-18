@@ -19,6 +19,7 @@ export interface DropdownListWithAttributeContainerProps {
     Op_Key: ListAttributeValue<string | Big>;
     Op_Label: ListExpressionValue<string>;
     Can_Search: boolean;
+    InputAttr?: EditableValue<string>;
 }
 
 export interface DropdownListWithAttributePreviewProps {
@@ -32,5 +33,6 @@ export interface DropdownListWithAttributePreviewProps {
     Op_Key: string;
     Op_Label: string;
     Can_Search: boolean;
-    InputChange: {} | null;
+    InputAttr: string;
+    OnSelectChange: {} | null;
 }
