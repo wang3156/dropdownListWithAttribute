@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "C:\\DW\\Project\\Test\\Mendix\\TestApp",
+    "projectPath": "./",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },
