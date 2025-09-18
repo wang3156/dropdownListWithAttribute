@@ -3,6 +3,7 @@
 
 ## Features
 [feature highlights]
+<img width="1264" height="669" alt="image" src="https://github.com/user-attachments/assets/ae76d3f7-25f2-49bb-90bc-ba0f60a7ba43" />
 
 ## Usage
 [step by step instructions]
