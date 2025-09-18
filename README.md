@@ -1,4 +1,4 @@
-## DropdownListWithAttribute
+## DropdownListWithAttribute Mendix Pluggable Widget(Mendix 10.6)
 [the dropdownlist for  bind value to attribute ]
 
 ## Features
